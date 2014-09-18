@@ -89,10 +89,23 @@ public class Generator : MonoBehaviour {
 		System.Random random = new System.Random();
 		if(newIDs.Count != 0){
 			foreach(int id in newIDs){
-				int chrctIndex = random.Next(charactors.Count);
-				GameObject instance = (GameObject)Instantiate(charactors[chrctIndex],
-					thisFrame.peoples[id].m_position, Quaternion.Euler(0.0f, 90.0f, 0.0f));//Quaternion.identity);
-				//LODGroup Object
+				int role = thisFrame.peoples[id].m_role;
+				int chrctIndex = -1;//random.Next(charactors.Count);
+				switch(role)
+				{
+				case 0://teacher
+					chrctIndex = 2;
+					break;
+				case 1://student
+				default:
+					chrctIndex = random.Next(2);
+					break;
+				}
+				GameObject instance = (GameObject)Instantiate(
+					charactors[chrctIndex],
+					thisFrame.peoples[id].m_position, 
+					Quaternion.Euler(0.0f, random.Next(90), 0.0f));
+
 				instance.name = "people" + id.ToString();
 				instance.transform.parent = parent.transform;
 				if(instance.gameObject.animation){
