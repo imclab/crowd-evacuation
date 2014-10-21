@@ -35,13 +35,13 @@ public class FlyCamera : MonoBehaviour
 	
 	void Start ()
 	{
-		GameObject target = GameObject.Find("Target"); 
-		iTween.MoveTo(gameObject,iTween.Hash(
-			"position",new Vector3(32,5,56),
-			"time",2.0f,
-			"looktarget",target.transform,
-			"looktime",0.0f
-			));
+//		GameObject target = GameObject.Find("Target"); 
+//		iTween.MoveTo(gameObject,iTween.Hash(
+//			"position",new Vector3(32,5,56),
+//			"time",2.0f,
+//			"looktarget",target.transform,
+//			"looktime",0.0f
+//			));
 	}
  
 	void Update ()

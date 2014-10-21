@@ -9,22 +9,24 @@ public class GameGUI : MonoBehaviour {
 	private float transparent = 0.5f;
 	private GameObject goWall = null;
 	private GameObject goFlyController = null;
-	private GameObject goClassroomCam = null;
-	private GameObject goCornerCam = null;
-	private GameObject goSquareCam = null;
+	private GameObject goClassroomVp = null;
+	private GameObject goCornerVp = null;
+	private GameObject goSquareVp = null;
+	private FlyCamera cmpFlyCamera = null;
 
 	// Use this for initialization
 	void Start () {
 		goWall = GameObject.Find("phxx/1Wall");
 		SetTransparent();
 		goFlyController = GameObject.Find("FlyController");
-		goClassroomCam = GameObject.Find("Views/Classroom");
-		goCornerCam = GameObject.Find("Views/Corner");
-		goSquareCam = GameObject.Find("Views/Square");
-		goFlyController.SetActive(true);
-		goClassroomCam.SetActive(false);
-		goCornerCam.SetActive(false);
-		goSquareCam.SetActive(false);
+		goClassroomVp = GameObject.Find("ViewPoints/Classroom");
+		goCornerVp = GameObject.Find("ViewPoints/Corner");
+		goSquareVp = GameObject.Find("ViewPoints/Square");
+		cmpFlyCamera = goFlyController.GetComponent<FlyCamera>();
+		//start point : class room
+		goFlyController.transform.position = goClassroomVp.transform.position;
+		cmpFlyCamera.rotationX = goClassroomVp.transform.localScale.x;
+		cmpFlyCamera.rotationY = goClassroomVp.transform.localScale.y;
 	}
 	
 	void OnGUI(){
@@ -44,29 +46,20 @@ public class GameGUI : MonoBehaviour {
 		//Debug.Log(transparent);
 		SetTransparent();
 		GUILayout.BeginHorizontal("box");
-		if(GUILayout.Button("自由")){
-			goFlyController.SetActive(true);
-			goClassroomCam.SetActive(false);
-			goCornerCam.SetActive(false);
-			goSquareCam.SetActive(false);
-		}
 		if(GUILayout.Button("教室")){
-			goFlyController.SetActive(false);
-			goClassroomCam.SetActive(true);
-			goCornerCam.SetActive(false);
-			goSquareCam.SetActive(false);
+			goFlyController.transform.position = goClassroomVp.transform.position;
+			cmpFlyCamera.rotationX = goClassroomVp.transform.localScale.x;
+			cmpFlyCamera.rotationY = goClassroomVp.transform.localScale.y;
 		}
 		if(GUILayout.Button("拐角")){
-			goFlyController.SetActive(false);
-			goClassroomCam.SetActive(false);
-			goCornerCam.SetActive(true);
-			goSquareCam.SetActive(false);
+			goFlyController.transform.position = goCornerVp.transform.position;
+			cmpFlyCamera.rotationX = goCornerVp.transform.localScale.x;
+			cmpFlyCamera.rotationY = goCornerVp.transform.localScale.y;
 		}
 		if(GUILayout.Button("广场")){
-			goFlyController.SetActive(false);
-			goClassroomCam.SetActive(false);
-			goCornerCam.SetActive(false);
-			goSquareCam.SetActive(true);
+			goFlyController.transform.position = goSquareVp.transform.position;
+			cmpFlyCamera.rotationX = goSquareVp.transform.localScale.x;
+			cmpFlyCamera.rotationY = goSquareVp.transform.localScale.y;
 		}
 		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();

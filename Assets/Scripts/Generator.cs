@@ -110,7 +110,7 @@ public class Generator : MonoBehaviour {
 				instance.transform.parent = parent.transform;
 				if(instance.gameObject.animation){
 					instance.gameObject.animation.wrapMode = WrapMode.Loop;
-					instance.gameObject.animation.Play("walk");
+					instance.gameObject.animation.Play("idle");
 				}
 			}
 		}
@@ -213,7 +213,10 @@ public class Generator : MonoBehaviour {
 		}
 		FramePool.GetInstance().PutFrame(lastFrame);
 		lastFrame = thisFrame;
-
+		//////////
+		if(thisFrame.id == 0){
+			Time.timeScale = 0;
+		}
 	}
 
 	void NotifyFinish(){
