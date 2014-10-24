@@ -16,7 +16,7 @@ public class GameGUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		goWall = GameObject.Find("phxx/1Wall");
+		goWall = GameObject.Find("phxx3f3/1Walls");
 		SetTransparent();
 		goFlyController = GameObject.Find("FlyController");
 		goClassroomVp = GameObject.Find("ViewPoints/Classroom");
@@ -66,10 +66,10 @@ public class GameGUI : MonoBehaviour {
 	}
 
 	void SetTransparent(){
-//		foreach(Transform tr in goWall.transform){
-//			Color tmp = tr.gameObject.renderer.material.GetColor("_Color");
-//			tmp.a = transparent;
-//			tr.gameObject.renderer.material.SetColor("_Color", tmp);
-//		}
+		foreach(Transform tr in goWall.transform){
+			Color tmp = tr.gameObject.renderer.material.GetColor("_Color");
+			tmp.a = transparent;
+			tr.gameObject.renderer.material.SetColor("_Color", tmp);
+		}
 	}
 }

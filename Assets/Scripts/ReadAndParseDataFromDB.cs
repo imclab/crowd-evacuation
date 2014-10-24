@@ -64,13 +64,13 @@ public class ReadAndParseDataFromDB : MonoBehaviour {
 			//"posz:{5}, velx:{6}, vely:{7}",
 			DataRow data = result.Rows[i];
 			int peopleID = int.Parse(data[1].ToString());
-			int peopleRole = int.Parse(data[2].ToString());
-			int peopleStatus = int.Parse(data[3].ToString());
-			float posx = float.Parse(data[4].ToString());
-			float posy = float.Parse(data[6].ToString());//posz
-			float posz = float.Parse(data[5].ToString());//posy
-			float orntx = float.Parse(data[7].ToString());
-			float ornty = float.Parse(data[8].ToString());
+			int peopleRole = -1;//int.Parse(data[2].ToString());
+			int peopleStatus = int.Parse(data[2].ToString());
+			float posx = float.Parse(data[3].ToString());
+			float posy = float.Parse(data[5].ToString());//posz
+			float posz = float.Parse(data[4].ToString());//posy
+			float orntx = float.Parse(data[6].ToString());
+			float ornty = float.Parse(data[7].ToString());
 			//if(peopleID <= 10){//test propurse only
 			People p = PeoplePool.GetInstance().GetPeople();
 			p.m_id = peopleID;
@@ -78,6 +78,10 @@ public class ReadAndParseDataFromDB : MonoBehaviour {
 			p.m_status = (PeopleStatus)peopleStatus;
 			p.m_position = new Vector3(posx,posy,posz);
 			p.m_orientation = new Vector3(orntx, 0, ornty);
+			p.m_animSpeed = p.m_animBaseSpeed + (Random.value - 0.5f) * 0.4f;
+			p.m_figureScale = new Vector3(1.0f + (Random.value - 0.5f) * 0.4f, 
+			                              1.0f + (Random.value - 0.5f) * 0.4f, 
+			                              1.0f + (Random.value - 0.5f) * 0.4f);
 			frame.peoples.Add(peopleID, p);
 			//}
 		}

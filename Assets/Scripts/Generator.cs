@@ -40,7 +40,6 @@ public class Generator : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		//Time.timeScale = 1.5f;
 		parent = GameObject.Find("/Instances");
 		InvokeRepeating("GenerateOneFrame", 1f, frameTime);
 	}
@@ -97,8 +96,10 @@ public class Generator : MonoBehaviour {
 					chrctIndex = 2;
 					break;
 				case 1://student
-				default:
 					chrctIndex = random.Next(2);
+					break;
+				default://random role
+					chrctIndex = random.Next(charactors.Count);
 					break;
 				}
 				GameObject instance = (GameObject)Instantiate(
@@ -108,8 +109,12 @@ public class Generator : MonoBehaviour {
 
 				instance.name = "people" + id.ToString();
 				instance.transform.parent = parent.transform;
+				instance.transform.localScale = Vector3.Scale(instance.transform.localScale, thisFrame.peoples[id].m_figureScale);
 				if(instance.gameObject.animation){
 					instance.gameObject.animation.wrapMode = WrapMode.Loop;
+					foreach(AnimationState state in instance.gameObject.animation){
+						state.speed = thisFrame.peoples[id].m_animSpeed;
+					}
 					instance.gameObject.animation.Play("idle");
 				}
 			}
@@ -214,9 +219,9 @@ public class Generator : MonoBehaviour {
 		FramePool.GetInstance().PutFrame(lastFrame);
 		lastFrame = thisFrame;
 		//////////
-		if(thisFrame.id == 0){
-			Time.timeScale = 0;
-		}
+//		if(thisFrame.id == 0){
+//			Time.timeScale = 0;
+//		}
 	}
 
 	void NotifyFinish(){

@@ -23,17 +23,29 @@ public class People {
 	public Vector3 m_position;
 	public Vector3 m_orientation;
 
+	//used to control the speed of animation
+	public float m_animBaseSpeed;
+	public float m_animSpeed;
+
+	//each component represent the scale of each part
+	//x: thickness of the body
+	//y: fatness 
+	//z: height
+	public Vector3 m_figureScale;
+
 	public People(){
 		Initialize();
 	}
 	
-	public People(int id, int role, int status, 
-	              Vector3 targetPosition, Vector3 targetOrnt){
+	public People(int id, int role, int status, Vector3 targetPosition, 
+	              Vector3 targetOrnt, float animSpeed, Vector3 figureScale){
 		m_id = id;
 		m_role = role;
 		m_status = (PeopleStatus)status;
 		m_position = targetPosition;
 		m_orientation = targetOrnt;
+		m_animSpeed = animSpeed;
+		m_figureScale = figureScale;
 	}
 
 	public void Initialize(){
@@ -42,6 +54,9 @@ public class People {
 		m_status = (PeopleStatus)0;
 		m_position = Vector3.zero;
 		m_orientation = Vector3.zero;
+		m_animBaseSpeed = 1.0f;
+		m_animSpeed = 0.0f;
+		m_figureScale = new Vector3(1.0f, 1.0f, 1.0f);
 	}
 
 	public override string ToString ()
