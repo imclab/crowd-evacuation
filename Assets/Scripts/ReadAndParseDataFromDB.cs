@@ -64,13 +64,13 @@ public class ReadAndParseDataFromDB : MonoBehaviour {
 			//"posz:{5}, velx:{6}, vely:{7}",
 			DataRow data = result.Rows[i];
 			int peopleID = int.Parse(data[1].ToString());
-			int peopleRole = -1;//int.Parse(data[2].ToString());
-			int peopleStatus = int.Parse(data[2].ToString());
-			float posx = float.Parse(data[3].ToString());
-			float posy = float.Parse(data[5].ToString());//posz
-			float posz = float.Parse(data[4].ToString());//posy
-			float orntx = float.Parse(data[6].ToString());
-			float ornty = float.Parse(data[7].ToString());
+			int peopleRole = int.Parse(data[2].ToString());
+			int peopleStatus = int.Parse(data[3].ToString());
+			float posx = float.Parse(data[4].ToString());
+			float posy = float.Parse(data[6].ToString());//posz
+			float posz = float.Parse(data[5].ToString());//posy
+			float orntx = float.Parse(data[7].ToString());
+			float ornty = float.Parse(data[8].ToString());
 			//if(peopleID <= 10){//test propurse only
 			People p = PeoplePool.GetInstance().GetPeople();
 			p.m_id = peopleID;

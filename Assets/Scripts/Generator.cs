@@ -93,10 +93,10 @@ public class Generator : MonoBehaviour {
 				switch(role)
 				{
 				case 0://teacher
-					chrctIndex = 2;
+					chrctIndex = 10+random.Next(5);
 					break;
 				case 1://student
-					chrctIndex = random.Next(2);
+					chrctIndex = random.Next(10);
 					break;
 				default://random role
 					chrctIndex = random.Next(charactors.Count);
