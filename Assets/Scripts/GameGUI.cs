@@ -24,9 +24,9 @@ public class GameGUI : MonoBehaviour {
 		goSquareVp = GameObject.Find("ViewPoints/Square");
 		cmpFlyCamera = goFlyController.GetComponent<FlyCamera>();
 		//start point : class room
-		goFlyController.transform.position = goClassroomVp.transform.position;
-		cmpFlyCamera.rotationX = goClassroomVp.transform.localScale.x;
-		cmpFlyCamera.rotationY = goClassroomVp.transform.localScale.y;
+		goFlyController.transform.position = goCornerVp.transform.position;
+		cmpFlyCamera.rotationX = goCornerVp.transform.localScale.x;
+		cmpFlyCamera.rotationY = goCornerVp.transform.localScale.y;
 	}
 	
 	void OnGUI(){
